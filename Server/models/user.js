@@ -16,7 +16,6 @@ const userSchema = mongoose.Schema({
 });
 
 // Crea y exporta el modelo basado en el esquema
-//const User = mongoose.model("User", userSchema);
 
 //module.exports = User;
 
