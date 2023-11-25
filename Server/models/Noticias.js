@@ -1,12 +1,14 @@
-const express = require("express");
-const router = express.Router();
-const NewsSchema = require("../models/Noticias"); // Asegúrate de cambiar la ruta al archivo de tu modelo
+const mongoose = require("mongoose");
 
-router.post("/Noticias", (req, res) => {
-    const Noticia = NewsSchema(req.body);
-    Noticia.save()
-        .then((data) => res.status(201).json(data))
-        .catch((error) => res.status(500).json({ error: error.message }));
+const NewsSchema = new mongoose.Schema({
+  title: { 
+    type: String, 
+    unique: true,
+    required: true,
+  },
+  contenido: {
+    type: String,
+    required: true,
+  },
 });
-
-module.exports = router;
+const News = mongoose.model("News", NewsSchema);
