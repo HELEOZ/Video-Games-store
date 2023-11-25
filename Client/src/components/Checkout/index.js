@@ -1,94 +1,69 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import payment from "../../img/paypal.jpg";
-import card from "../../img/master-card.jpg";
-
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import "./style.css";
 
 function Checkout(props) {
+  const handleApprove = (orderId) => {
+    console.log("Pago aprobado con la orden ID:", orderId);
+    // Lógica post-aprobación
+  };
+
+  const paises = ["Honduras", "El Salvador", "Guatemala", "Nicaragua", "Costa Rica",]; // Lista de países
+
   return (
-    <>
+    <PayPalScriptProvider options={{"client-id": "AQd0KzXQesR1N1q_Etwrwaoky2fepj-oOQpA4-QJkOVIrvj2Oex12SN_Xx3gj5cZLInNj_B0enphzvpl"}}>
       <section className="checkout-page-area section_100">
         <Container>
           <Row>
             <Col lg={8}>
               <div className="checkout-left-box">
-                <h3>Billing Details</h3>
+                <h3>Detalles de facturación</h3>
                 <form>
+                  {/* Nombre */}
                   <Row className="checkout-form">
                     <Col md={6}>
-                      <input
-                        placeholder="Your First Name"
-                        type="text"
-                        name="firstname"
-                        id="name23"
-                      />
+                      <input placeholder="Tu Nombre" type="text" name="firstname" />
                     </Col>
+                    {/* Apellido */}
                     <Col md={6}>
-                      <input
-                        placeholder="Your Last Name"
-                        type="text"
-                        name="lastname"
-                        id="name22"
-                      />
+                      <input placeholder="Tu Apellido" type="text" name="lastname" />
                     </Col>
                   </Row>
+                  {/* Dirección */}
                   <Row className="checkout-form">
                     <Col md={12}>
-                      <input
-                        placeholder="Country"
-                        type="text"
-                        name="country"
-                        id="cntr2"
-                      />
+                      <input placeholder="Dirección" type="text" name="address" />
                     </Col>
                   </Row>
-                  <Row className="checkout-form">
-                    <Col md={12}>
-                      <input
-                        placeholder="Your Address"
-                        type="text"
-                        name="address"
-                        id="addr2"
-                      />
-                    </Col>
-                  </Row>
-                  <Row className="checkout-form">
-                    <Col md={12}>
-                      <input
-                        placeholder="Town / City"
-                        type="text"
-                        name="town"
-                        id="Town2"
-                      />
-                    </Col>
-                  </Row>
+                  {/* País */}
                   <Row className="checkout-form">
                     <Col md={6}>
-                      <input
-                        placeholder="Your Email Address"
-                        type="email"
-                        name="info2"
-                        id="info2"
-                      />
+                      <select name="country">
+                        {paises.map((pais, index) => (
+                          <option key={index} value={pais}>{pais}</option>
+                        ))}
+                      </select>
                     </Col>
+                    {/* Código Postal */}
                     <Col md={6}>
-                      <input
-                        placeholder="Your Mobile Number"
-                        type="text"
-                        name="info2"
-                        id="info12"
-                      />
+                      <input placeholder="Código Postal" type="text" name="zip" />
                     </Col>
                   </Row>
+                  {/* Ciudad */}
+                  <Row className="checkout-form">
+                    <Col md={6}>
+                      <input placeholder="Ciudad" type="text" name="city" />
+                    </Col>
+                    {/* Número de Teléfono */}
+                    <Col md={6}>
+                      <input placeholder="Número de Teléfono" type="text" name="phone" />
+                    </Col>
+                  </Row>
+                  {/* Email */}
                   <Row className="checkout-form">
                     <Col md={12}>
-                      <textarea
-                        placeholder="Write Order Note Here..."
-                        name="ordernote"
-                        defaultValue={""}
-                      />
+                      <input placeholder="Correo Electrónico" type="email" name="email" />
                     </Col>
                   </Row>
                 </form>
@@ -96,75 +71,34 @@ function Checkout(props) {
             </Col>
             <Col lg={4}>
               <div className="order-summury-box">
-                <h3>Order Summury</h3>
-                <div className="summury-inn">
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>Cart Subtotal</td>
-                        <td>$270</td>
-                      </tr>
-                      <tr>
-                        <td>Shipping and Handling</td>
-                        <td>Free Shipping</td>
-                      </tr>
-                      <tr>
-                        <td>Order Total</td>
-                        <td>$270</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                {/* Resumen del pedido */}
               </div>
               <div className="booking-right">
-                <div className="fag-payment clearfix">
-                  <div className="payment">
-                    <input type="radio" id="ss-option" name="selector" />
-                    <label htmlFor="ss-option">Direct Bank Transfer</label>
-                    <div className="check">
-                      <div className="inside" />
-                    </div>
-                    <p>
-                      Make your payment directly into our bank account. Please
-                      use your Order ID as the payment reference.order won’t be
-                      shipped until the funds have cleared.
-                    </p>
-                  </div>
-                  <div className="payment">
-                    <input type="radio" id="f-option" name="selector" />
-                    <label htmlFor="f-option">Cheque Payment</label>
-                    <div className="check">
-                      <div className="inside" />
-                    </div>
-                  </div>
-                  <div className="payment">
-                    <input type="radio" id="s-option" name="selector" />
-                    <label htmlFor="s-option">Credit Card</label>
-                    <div className="check">
-                      <div className="inside" />
-                    </div>
-                    <img src={card} alt="credit card" />
-                  </div>
-                  <div className="payment">
-                    <input type="radio" id="t-option" name="selector" />
-                    <label htmlFor="t-option">Paypal</label>
-                    <div className="check">
-                      <div className="inside" />
-                    </div>
-                    <img src={payment} alt="credit card" />
-                  </div>
-                </div>
                 <div className="action-btn">
-                  <Link to="/" className="fag-btn">
-                    place order <span />
-                  </Link>
+                  <PayPalButtons
+                    style={{ layout: "vertical" }}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [{
+                          amount: {
+                            value: "270", // Total del pedido
+                          },
+                        }],
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order.capture().then((details) => {
+                        handleApprove(data.orderID);
+                      });
+                    }}
+                  />
                 </div>
               </div>
             </Col>
           </Row>
         </Container>
       </section>
-    </>
+    </PayPalScriptProvider>
   );
 }
 
