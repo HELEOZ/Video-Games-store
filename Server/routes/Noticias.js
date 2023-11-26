@@ -10,11 +10,11 @@ router.post("/Noticias", (req, res) => {
 });
 
 router.get("/Noticias",(req, res) => {
-    //const { id } = req.params; Traer un solo usuario
-    NewsSchema.find()  //NewsSchema.findById(id) Traer un solo usuario
+    NewsSchema.find()
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ error: error.message }));
 });
+
 //Traer un solo usuario
 router.get("/Noticias/:id",(req, res) => {
     const { id } = req.params; 
@@ -22,4 +22,22 @@ router.get("/Noticias/:id",(req, res) => {
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ error: error.message }));
 });
+
+router.delete("/Noticias/:id", (req, res) => {
+    const { id } = req.params;
+    NewsSchema
+      .deleteOne({ _id: id })
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ message: error }));
+  });
+
+  router.put("/Noticias/:id", (req, res) => {
+    const { id } = req.params;
+    const { title, contenido} = req.body;
+    NewsSchema
+      .updateOne({ _id: id }, { $set: {title, contenido } })
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ message: error }));
+  });
+
 module.exports = router;
