@@ -9,4 +9,10 @@ router.post("/Noticias", (req, res) => {
         .catch((error) => res.status(500).json({ error: error.message }));
 });
 
+router.get("/Noticias",(req, res) => {
+    //const { id } = req.params; Traer un solo usuario
+    NewsSchema.find()  //NewsSchema.findById(id) Traer un solo usuario
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ error: error.message }));
+});
 module.exports = router;
