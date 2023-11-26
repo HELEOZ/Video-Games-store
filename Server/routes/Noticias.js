@@ -15,4 +15,11 @@ router.get("/Noticias",(req, res) => {
     .then((data) => res.status(200).json(data))
     .catch((error) => res.status(500).json({ error: error.message }));
 });
+//Traer un solo usuario
+router.get("/Noticias/:id",(req, res) => {
+    const { id } = req.params; 
+    NewsSchema.findById(id)
+    .then((data) => res.status(200).json(data))
+    .catch((error) => res.status(500).json({ error: error.message }));
+});
 module.exports = router;
