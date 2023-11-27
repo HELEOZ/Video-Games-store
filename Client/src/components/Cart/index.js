@@ -141,6 +141,7 @@ function Cart(props) {
               <div className="checkout-action">
                 <Link to="/checkout" className="fag-btn">
                   Proceder a facturar <span />
+                  
                 </Link>
               </div>
             </Col>

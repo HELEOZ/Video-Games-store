@@ -29,9 +29,19 @@
 }
 
 .comment-group-title h3,
-.fag-leave-comment h3 {
+
+.single-comment-item h3 {
     color: #fff;
     font-size: 24px;
     text-transform: uppercase;
     margin-bottom: 30px
+}
+button{
+    color: #291c4d;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin:20px;
+    font-style: italic;
+     margin-top: 50px;
 }

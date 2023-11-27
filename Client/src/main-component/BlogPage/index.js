@@ -12,7 +12,7 @@ const BlogPage = () => {
       <PageTitle
         Title={
           <>
-            All <span>News</span>
+            Todas <span>Las Noticias</span>
           </>
         }
       />

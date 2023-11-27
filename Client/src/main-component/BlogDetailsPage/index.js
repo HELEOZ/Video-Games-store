@@ -9,7 +9,7 @@ const BlogDetailsPage = () => {
   return (
     <>
       <Header />
-      <PageTitle Title={<>News Details</>} />
+      <PageTitle Title={<>Detalles de Noticias</>} />
       <BlogDetails />
       <Footer />
     </>
