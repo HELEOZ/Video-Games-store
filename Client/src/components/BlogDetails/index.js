@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import CommentComponent from "./coment";
+import axios from 'axios';
+
+// Resto de tu código...
+
 import { Container, Row, Col } from "react-bootstrap";
 import {
   FaAngleRight,
@@ -30,12 +35,26 @@ function BlogDetails(props) {
   });
   const [comments, setComments] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Agrega el nuevo comentario al arreglo de comentarios
-    setComments([...comments, commentData]);
-    // Resetea el formulario
-    setCommentData({ name: "", email: "", comment: "" });
+    try {
+      // Realiza la solicitud POST a tu backend
+      const response = await axios.post('http://localhost:9000/api/comments', commentData);
+  
+      // Verifica si la solicitud fue exitosa (código 201)
+      if (response.status === 201) {
+        // Agrega el nuevo comentario al arreglo de comentarios
+        setComments([...comments, response.data]);
+        // Resetea el formulario
+        setCommentData({ name: "", email: "", comment: "" });
+      } else {
+        // Maneja errores si la solicitud no fue exitosa
+        console.error('Error al enviar el comentario');
+      }
+    } catch (error) {
+      // Maneja errores de la solicitud
+      console.error('Hubo un problema con la solicitud:', error);
+    }
   };
 
   const [editing, setEditing] = useState(null); // Almacena el índice del comentario que se está editando
@@ -284,6 +303,8 @@ function BlogDetails(props) {
                 {/* Comienzo del formulario de comentarios */}
                 <div className="fag-comment-form">
                   <h3>Deja tu comentario</h3>
+                  {/* Renderiza el componente CommentComponent aquí */}
+                  {/* <CommentComponent /> */}
                   <form onSubmit={handleSubmit}>
                     <div className="form-group">
                       <input

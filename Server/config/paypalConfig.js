@@ -1,6 +1,12 @@
+//import { config } from "dotenv";
+//config();
 
-module.exports = {
-    mode: 'sandbox', // 'sandbox' para pruebas, 'live' para producción
-    client_id: 'TU_CLIENT_ID',
-    client_secret: 'TU_CLIENT_SECRET'
-};
+// Paypal
+export const PAYPALCLIENT = process.env.PAYPAL_CLIENT;
+export const PAYPALSECRET = process.env.PAYPAL_SECRET;
+export const PAYPALURL = process.env.PAYPAL_URL;
+//export const PAYPALURL
+
+console.log(PAYPALCLIENT);
+console.log(PAYPALSECRET);
+console.log(PAYPALURL);

@@ -1,28 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-
-// Conexión a MongoDB
-mongoose.connect('mongodb://localhost:27017/commentsDB', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// Esquema de comentario
-const commentSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  comment: String,
-});
-
-const Comment = mongoose.model('Comment', commentSchema);
+const express = require("express");
+const router = express.Router();
+const Comment = require('../models/blogs'); 
 
 // Rutas
-app.post('/api/comments', async (req, res) => {
+router.post('/comments', async (req, res) => {
   const newComment = new Comment(req.body);
   try {
     const savedComment = await newComment.save();
@@ -32,7 +13,7 @@ app.post('/api/comments', async (req, res) => {
   }
 });
 
-app.get('/api/comments', async (req, res) => {
+router.get('/comments', async (req, res) => {
   try {
     const comments = await Comment.find();
     res.json(comments);
@@ -40,3 +21,5 @@ app.get('/api/comments', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+module.exports = router;

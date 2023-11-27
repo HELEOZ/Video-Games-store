@@ -1,22 +1,16 @@
-// routes/paypalRoutes.js
-const express = require('express');
-const router = express.Router();
-const paypal = require('paypal-rest-sdk');
-const paypalConfig = require('../config/paypalConfig');
+import { Router } from "express";
+import {
+  createOrder,
+  captureOrder,
+  cancelPayment,
+} from "../controller/Paypalcontroller";
 
-// Configuración de PayPal
-paypal.configure(paypalConfig);
+const router = Router();
 
-// Ruta para realizar un pago a través de PayPal
-router.post('/realizar-pago', (req, res) => {
-    // Lógica para realizar el pago con PayPal
-    // ...
-});
+router.post("/create-order", createOrder);
 
-// Ruta para manejar el retorno después del pago
-router.get('/retorno-exitoso', (req, res) => {
-    // Lógica para manejar el retorno exitoso
-    // ...
-});
+router.get("/capture-order", captureOrder);
 
-module.exports = router;
+router.get("/cancel-order", cancelPayment);
+
+export default router;
