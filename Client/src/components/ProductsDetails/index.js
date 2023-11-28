@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import img from "../../img/Producto-1.jpeg";
+
 import author1 from "../../img/4.jpg";
 import author2 from "../../img/5.jpg";
 
@@ -205,7 +206,7 @@ function ProductsDetails(props) {
                                             <AiFillStar />
                                           </li>
                                         </ul>
-                                        <p>12 minitos atrás</p>
+                                        <p>12 minutos atrás</p>
                                       </div>
                                       <div className="comment-text-inner">
                                         <p>

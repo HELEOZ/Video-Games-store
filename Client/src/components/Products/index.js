@@ -3,9 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import { AiFillStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import product1 from "../../img/Producto-1.jpeg";
-import product2 from "../../img/product-1.png";
-import product3 from "../../img/product-3.png";
-import product4 from "../../img/product-2.png";
+import product2 from "../../img/Producto-2.jpg";
+import product3 from "../../img/Producto-3.jpg";
+import product4 from "../../img/Producto-4.jpg";
+import product5 from "../../img/Producto-5.png";
+import product6 from "../../img/Producto-6.png";
+import product7 from "../../img/Producto-7.jpg";
+import product8 from "../../img/Producto-8.jpg";
+import product9 from "../../img/Producto-9.jpg";
 
 import "./style.css";
 import { FaAngleRight } from "react-icons/fa";
@@ -151,7 +156,7 @@ function Products(props) {
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">NX-90 Headphone</Link>
+                          <Link to="/product-single">Teclado - DURGOD TGK021</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -174,7 +179,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L1,500.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -199,7 +204,7 @@ function Products(props) {
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">PQ-12 Headphone</Link>
+                          <Link to="/product-single">IOGEAR KeyMander</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -222,7 +227,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L1,000.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -248,7 +253,7 @@ function Products(props) {
                       <div className="games-desc">
                         <h3>
                           <Link to="/product-single">
-                            Wireless Gaming Mouse
+                            Mouse inalámbrico
                           </Link>
                         </h3>
                         <div className="game-rating">
@@ -272,7 +277,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L1,000.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -291,13 +296,13 @@ function Products(props) {
                       <div className="games-thumb">
                         <div className="games-thumb-image">
                           <Link to="/product-single">
-                            <img src={product1} alt="product" />
+                            <img src={product5} alt="product" />
                           </Link>
                         </div>
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">Bluetooth Controller</Link>
+                          <Link to="/product-single">Letrero LED Mario Bros</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -320,7 +325,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L1,000.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -339,13 +344,13 @@ function Products(props) {
                       <div className="games-thumb">
                         <div className="games-thumb-image">
                           <Link to="/product-single">
-                            <img src={product2} alt="product" />
+                            <img src={product6} alt="product" />
                           </Link>
                         </div>
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">NX-90 Headphone</Link>
+                          <Link to="/product-single">Bloque Luz - Paladone</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -368,7 +373,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L1,000.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -387,13 +392,13 @@ function Products(props) {
                       <div className="games-thumb">
                         <div className="games-thumb-image">
                           <Link to="/product-single">
-                            <img src={product1} alt="product" />
+                            <img src={product7} alt="product" />
                           </Link>
                         </div>
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">Bluetooth Controller</Link>
+                          <Link to="/product-single">Lámpara - Pac Man</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -416,7 +421,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L800.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -435,13 +440,13 @@ function Products(props) {
                       <div className="games-thumb">
                         <div className="games-thumb-image">
                           <Link to="/product-single">
-                            <img src={product4} alt="product" />
+                            <img src={product8} alt="product" />
                           </Link>
                         </div>
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">NX-90 Headphone</Link>
+                          <Link to="/product-single">Joy-Con (L)/(R)</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -464,7 +469,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L1,800.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link
@@ -483,13 +488,13 @@ function Products(props) {
                       <div className="games-thumb">
                         <div className="games-thumb-image">
                           <Link to="/product-single">
-                            <img src={product3} alt="product" />
+                            <img src={product9} alt="product" />
                           </Link>
                         </div>
                       </div>
                       <div className="games-desc">
                         <h3>
-                          <Link to="/product-single">PQ-12 Headphone</Link>
+                          <Link to="/product-single">RTX - Tarjeta Gráfica</Link>
                         </h3>
                         <div className="game-rating">
                           <ul>
@@ -512,7 +517,7 @@ function Products(props) {
                         </div>
                         <div className="game-action">
                           <div className="game-price">
-                            <h4>L00.00</h4>
+                            <h4>L5,000.00</h4>
                           </div>
                           <div className="game-buy">
                             <Link

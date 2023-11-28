@@ -2,13 +2,49 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaTwitch, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
+/*import axios from "axios";*/
 
 import "./style.css";
 
 function Register(props) {
+
+  const onClick = (e) => {
+    e.preventDefault();
+
+  /*const [userData, setUserData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
   const onClick = (e) => {
     e.preventDefault();
   };
+
+  const handleInputChange = (e) => {
+    setUserData({
+      ...userData,
+      username: e.target.value,
+      email: e.target.value,
+      password: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Realiza la solicitud al backend utilizando Axios
+      const response = await axios.post("http://localhost:9000/api/register", userData);
+
+      // Puedes hacer algo con la respuesta del backend si es necesario
+      console.log("Respuesta del backend:", response.data);
+    } catch (error) {
+      // Manejar errores aquí
+      console.error("Error al crear cuenta:", error);
+    }*/
+  };
+
   return (
     <>
       <div className="page-404 section--full-bg">
