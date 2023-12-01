@@ -4,7 +4,6 @@ import Header from "../../components/Header";
 import Hero from "../../components/Hero";
 import Video from "../../components/Video";
 import Games from "../../components/Games";
-import NextMatch from "../../components/NextMatch";
 import Promo from "../../components/Promo";
 import Team from "../../components/Team";
 import PreOrder from "../../components/PreOrder";
@@ -18,7 +17,6 @@ const HomePage = () => {
       <Hero />
       <Video />
       <Games />
-      <NextMatch />
       <Promo />
       <Team />
       <PreOrder />
