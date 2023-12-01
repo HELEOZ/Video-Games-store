@@ -30,31 +30,6 @@ const menus = [
         title: "Juego Único",
         link: "/game-single",
       },
-      {
-        id: 24,
-        title: "Partidos",
-        link: "/match",
-      },
-      {
-        id: 25,
-        title: "Partido Individual",
-        link: "/match-single",
-      },
-      {
-        id: 26,
-        title: "Error 404",
-        link: "/error",
-      },
-      {
-        id: 27,
-        title: "Iniciar Sesión",
-        link: "/login",
-      },
-      {
-        id: 28,
-        title: "Registrarse",
-        link: "/register",
-      },
     ],
   },
   {
@@ -103,7 +78,7 @@ const menus = [
   },
   {
     id: 5,
-    title: "Contacto",
+    title: "Contáctanos",
     link: "/contact",
   },
 ];
