@@ -57,15 +57,6 @@ function Header(props) {
                         <li>
                           <Link to="/game-single">juego único del año</Link>
                         </li>
-                        <li>
-                          <Link to="/error">404 Error</Link>
-                        </li>
-                        <li>
-                          <Link to="/login">Iniciar sesión</Link>
-                        </li>
-                        <li>
-                          <Link to="/register">Registrarse</Link>
-                        </li>
                       </ul>
                     </li>
                     <li className="has-sub">
@@ -128,10 +119,6 @@ function Header(props) {
                       {/* Agrega el botón de inicio de sesión */}
                       Iniciar sesión
                     </span>
-                    {/* Agrega un botón de registro si es necesario */}
-                    {/* <Link to="/register" onClick={() => {}} className="lang-btn">
-                      Registro
-                    </Link> */}
                   </>
                 )}
               </div>
@@ -152,4 +139,3 @@ function Header(props) {
 }
 
 export default Header;
-
