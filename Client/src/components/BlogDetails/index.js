@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CommentComponent from "./coment";
 import axios from 'axios';
 
 // Resto de tu código...
