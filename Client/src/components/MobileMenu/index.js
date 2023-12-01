@@ -7,118 +7,119 @@ import "./style.css";
 const menus = [
   {
     id: 1,
-    title: "Home",
+    title: "Inicio",
     link: "/",
   },
   {
     id: 2,
-    title: "Pages",
+    title: "Páginas",
     link: "/",
     submenu: [
       {
         id: 21,
-        title: "About Us",
+        title: "Sobre Nosotros",
         link: "/about",
       },
       {
         id: 22,
-        title: "Our Games",
+        title: "Nuestros Juegos",
         link: "/games",
       },
       {
         id: 23,
-        title: "Games Single",
+        title: "Juego Único",
         link: "/game-single",
       },
       {
         id: 24,
-        title: "Matches",
+        title: "Partidos",
         link: "/match",
       },
       {
         id: 25,
-        title: "Matches Single",
+        title: "Partido Individual",
         link: "/match-single",
       },
       {
         id: 26,
-        title: "404 Error",
+        title: "Error 404",
         link: "/error",
       },
       {
         id: 27,
-        title: "Login",
+        title: "Iniciar Sesión",
         link: "/login",
       },
       {
         id: 28,
-        title: "Register",
+        title: "Registrarse",
         link: "/register",
       },
     ],
   },
   {
     id: 3,
-    title: "News",
+    title: "Noticias",
     link: "/",
     submenu: [
       {
         id: 31,
-        title: "All News",
+        title: "Todas las Noticias",
         link: "/blog",
       },
       {
         id: 32,
-        title: "News Single",
+        title: "Noticia Individual",
         link: "/blog-single",
       },
     ],
   },
   {
     id: 4,
-    title: "Store",
+    title: "Tienda",
     link: "/",
     submenu: [
       {
         id: 41,
-        title: "All Products",
+        title: "Todos los Productos",
         link: "/products",
       },
       {
         id: 42,
-        title: "Product Single",
+        title: "Producto Individual",
         link: "/product-single",
       },
       {
         id: 43,
-        title: "Cart",
+        title: "Carro de Compras",
         link: "/cart",
       },
       {
         id: 44,
-        title: "Checkout",
+        title: "Facturar",
         link: "/checkout",
       },
     ],
   },
   {
     id: 5,
-    title: "Contact",
+    title: "Contacto",
     link: "/contact",
   },
 ];
 
 const MobileMenu = () => {
-  const [MenuShow, SetMenuShow] = useState(false);
+  const [menuShow, setMenuShow] = useState(false);
   const [isOpen, setIsOpen] = useState(0);
+
+  const toggleMenu = () => {
+    setMenuShow(!menuShow);
+  };
 
   return (
     <>
       <div className="responsiveMenu">
-        <nav
-          id="mobileMenu"
-          className={`mobileMenu ${MenuShow ? "active" : ""}`}
-        >
+        <nav id="mobileMenu" className={`mobileMenu ${menuShow ? "active" : ""}`}>
           <ul className="responsivemenu">
             {menus.map((item) => {
               return (
@@ -126,10 +127,9 @@ const MobileMenu = () => {
                   {item.submenu ? (
                     <p
                       onClick={() => setIsOpen(isOpen ? 0 : item.id)}
-                      aria-expanded={MenuShow}
+                      aria-expanded={isOpen === item.id}
                     >
                       {item.title}
-                      {item.submenu ? "" : ""}
                     </p>
                   ) : (
                     <Link to={item.link}>{item.title}</Link>
@@ -140,16 +140,12 @@ const MobileMenu = () => {
                       <ul className="sub-menu">
                         {item.submenu.map((submenu) => (
                           <li key={submenu.id}>
-                            <Link className="active" to={submenu.link}>
-                              {submenu.title}
-                            </Link>
+                            <Link to={submenu.link}>{submenu.title}</Link>
                           </li>
                         ))}
                       </ul>
                     </Collapse>
-                  ) : (
-                    ""
-                  )}
+                  ) : null}
                 </li>
               );
             })}
@@ -157,8 +153,8 @@ const MobileMenu = () => {
         </nav>
 
         <div
-          className={`spinner-master ${MenuShow ? "active" : ""}`}
-          onClick={() => SetMenuShow(!MenuShow)}
+          className={`spinner-master ${menuShow ? "active" : ""}`}
+          onClick={toggleMenu}
         >
           <div id="spinner-form" className="spinner-spin">
             <div className="spinner diagonal part-1"></div>
