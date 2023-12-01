@@ -1,29 +1,18 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FiSearch } from "react-icons/fi";
-import { FaSearch, FaTimes } from "react-icons/fa";
 import MobileMenu from "../MobileMenu";
 import logo from "../../img/logo.png";
 import cart from "../../img/shopping-cart.png";
-import uk from "../../img/uk.png";
-import spain from "../../img/spain.png";
-import admin from "../../img/admin.jpg";
+
+// Importa la biblioteca de Auth0
+import { useAuth0 } from "@auth0/auth0-react";
 
 import "./style.css";
 
 function Header(props) {
-  const [show, setShow] = useState(false);
-
-  const SubmitHandler = (e) => {
-    e.preventDefault();
-  };
-
-  const onClick = (e) => {
-    e.preventDefault();
-  };
-
   const [state, setstate] = useState(false);
+
   const changeClass = () => {
     const scrollValue = document.documentElement.scrollTop;
     if (scrollValue > 100) {
@@ -33,6 +22,9 @@ function Header(props) {
     }
   };
   window.addEventListener("scroll", changeClass);
+
+  // Obtiene los métodos y propiedades de Auth0
+  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
 
   return (
     <>
@@ -52,7 +44,7 @@ function Header(props) {
                       <Link to="/">Inicio</Link>
                     </li>
                     <li className="has-sub">
-                      <Link to="/" onClick={onClick}>
+                      <Link to="/" onClick={() => {}}>
                         Paginas
                       </Link>
                       <ul>
@@ -63,13 +55,13 @@ function Header(props) {
                           <Link to="/games">Nuestros juegos</Link>
                         </li>
                         <li>
-                          <Link to="/game-single">juego unico del año</Link>
+                          <Link to="/game-single">juego único del año</Link>
                         </li>
                         <li>
                           <Link to="/error">404 Error</Link>
                         </li>
                         <li>
-                          <Link to="/login">Iniciar sesion</Link>
+                          <Link to="/login">Iniciar sesión</Link>
                         </li>
                         <li>
                           <Link to="/register">Registrarse</Link>
@@ -77,7 +69,7 @@ function Header(props) {
                       </ul>
                     </li>
                     <li className="has-sub">
-                      <Link to="/" onClick={onClick}>
+                      <Link to="/" onClick={() => {}}>
                         Noticias
                       </Link>
                       <ul>
@@ -85,12 +77,12 @@ function Header(props) {
                           <Link to="/blog">Todas las noticias</Link>
                         </li>
                         <li>
-                          <Link to="/blog-single">Noticias rapidas</Link>
+                          <Link to="/blog-single">Noticias rápidas</Link>
                         </li>
                       </ul>
                     </li>
                     <li className="has-sub">
-                      <Link to="/" onClick={onClick}>
+                      <Link to="/" onClick={() => {}}>
                         Tienda
                       </Link>
                       <ul>
@@ -98,10 +90,10 @@ function Header(props) {
                           <Link to="/products">Todos los productos</Link>
                         </li>
                         <li>
-                          <Link to="/product-single">Productos rapidos</Link>
+                          <Link to="/product-single">Productos rápidos</Link>
                         </li>
                         <li>
-                          <Link to="/cart">Carrito de compras</Link>
+                          <Link to="/cart">Carro de compras</Link>
                         </li>
                         <li>
                           <Link to="/checkout">Facturar</Link>
@@ -109,84 +101,47 @@ function Header(props) {
                       </ul>
                     </li>
                     <li>
-                      <Link to="/contact">Contactanos</Link>
+                      <Link to="/contact">Contáctanos</Link>
                     </li>
                   </ul>
                 </nav>
               </div>
-              <div className="header-right d-flex align-items-center justify-content-between">
-                <div className="header-search">
-                  <div id="search-trigger" onClick={() => setShow(true)}>
-                    <FiSearch />
-                  </div>
-                </div>
-                <div
-                  id="search-overlay"
-                  className={`block ${show ? "show" : ""}`}
-                >
-                  <div className="centered">
-                    <div id="search-box">
-                      <span id="close-btn" onClick={() => setShow(false)}>
-                        <FaTimes />
+              <div className="header-auth">
+                {/* Verifica si el usuario está autenticado */}
+                {isAuthenticated ? (
+                  <div className="user-profile">
+                    <div className="user-info">
+                      <img src={user.picture} alt={user.name} />
+                      <span className="user-name" onClick={() => logout()}>
+                        {user.name}
+                        <div className="dropdown-content">
+                          <Link to="/" onClick={() => logout()}>
+                            Cerrar sesión
+                          </Link>
+                        </div>
                       </span>
-                      <form id="search-form" onSubmit={SubmitHandler}>
-                        <input
-                          id="search-text"
-                          name="q"
-                          placeholder="What're you looking for?"
-                          type="text"
-                        />
-                        <button id="search-button" type="submit">
-                          <FaSearch />
-                        </button>
-                      </form>
                     </div>
                   </div>
-                </div>
-                <div className="header-cart">
-                  <Link to="/cart">
-                    <img src={cart} alt="shopping cart" />
-                    $35.00 {/* Cambié $12.00 a $35.00 como ejemplo */}
-                  </Link>
-                </div>
-                <div className="header-lang">
-                  <Link to="/" onClick={onClick}>
-                    <img src={uk} alt="uk" />
-                    EN
-                  </Link>
-                  <ul className="lang-menu">
-                    <li>
-                      <Link to="/" onClick={onClick}>
-                        <img src={spain} alt="spain" />
-                        <span>SP</span>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="header-auth">
-                  <Link to="/" onClick={onClick} className="lang-btn">
-                    <img src={admin} alt="admin" />
-                    Siman
-                  </Link>
-                  <ul className="user_menu">
-                    <li>
-                      <Link to="/" onClick={onClick}>
-                        Perfil
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/" onClick={onClick}>
-                        Configuracion
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/" onClick={onClick}>
-                        Cerrar sesion
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+                ) : (
+                  <>
+                    <span className="lang-btn" onClick={() => loginWithRedirect()}>
+                      {/* Agrega el botón de inicio de sesión */}
+                      Iniciar sesión
+                    </span>
+                    {/* Agrega un botón de registro si es necesario */}
+                    {/* <Link to="/register" onClick={() => {}} className="lang-btn">
+                      Registro
+                    </Link> */}
+                  </>
+                )}
               </div>
+              <div className="header-cart">
+                <Link to="/cart">
+                  <img src={cart} alt="Carro de compras" />
+                  Carro de compras
+                </Link>
+              </div>
+              {/* ... Código del menú móvil ... */}
               <MobileMenu />
             </div>
           </div>
@@ -197,3 +152,4 @@ function Header(props) {
 }
 
 export default Header;
+
