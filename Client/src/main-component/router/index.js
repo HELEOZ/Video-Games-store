@@ -1,6 +1,9 @@
+// AllRoute.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RutaProtegida from "../RutaProtegida/RutaProtegida";
 
+// Importaciones de tus componentes de página
 import Homepage from "../HomePage";
 import AboutPage from "../AboutPage";
 import OurGamePage from "../OurGamePage";
@@ -20,34 +23,33 @@ import ContactPage from "../ContactPage";
 
 const AllRoute = () => {
   return (
-    <div>
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/about" element={<AboutPage />} />
-          <Route exact path="/games" element={<OurGamePage />} />
-          <Route exact path="/game-single" element={<GameDetailsPage />} />
-          <Route exact path="/match" element={<MatchPage />} />
-          <Route exact path="/match-single" element={<MatchDetailsPage />} />
-          <Route exact path="/error" element={<ErrorPage />} />
-          <Route exact path="/login" element={<LoginPage />} />
-          <Route exact path="/register" element={<RegisterPage />} />
-          <Route exact path="/blog" element={<BlogPage />} />
-          <Route exact path="/blog-single" element={<BlogDetailsPage />} />
-          <Route exact path="/products" element={<ProductPage />} />
-          <Route exact path="/cart" element={<CartPage />} />
-          <Route exact path="/checkout" element={<CheckoutPage />} />
-          <Route exact path="/contact" element={<ContactPage />} />
-          <Route
-            exact
-            path="/product-single"
-            element={<ProductDetailsPage />}
-          />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Router>
-    </div>
+    <Router>
+      <Routes>
+        {/* Rutas no protegidas */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
+        {/* Rutas protegidas */}
+        <Route path="/" element={<RutaProtegida><Homepage /></RutaProtegida>} />
+        <Route path="/about" element={<RutaProtegida><AboutPage /></RutaProtegida>} />
+        <Route path="/games" element={<RutaProtegida><OurGamePage /></RutaProtegida>} />
+        <Route path="/game-single" element={<RutaProtegida><GameDetailsPage /></RutaProtegida>} />
+        <Route path="/match" element={<RutaProtegida><MatchPage /></RutaProtegida>} />
+        <Route path="/match-single" element={<RutaProtegida><MatchDetailsPage /></RutaProtegida>} />
+        <Route path="/blog" element={<RutaProtegida><BlogPage /></RutaProtegida>} />
+        <Route path="/blog-single" element={<RutaProtegida><BlogDetailsPage /></RutaProtegida>} />
+        <Route path="/products" element={<RutaProtegida><ProductPage /></RutaProtegida>} />
+        <Route path="/product-single" element={<RutaProtegida><ProductDetailsPage /></RutaProtegida>} />
+        <Route path="/cart" element={<RutaProtegida><CartPage /></RutaProtegida>} />
+        <Route path="/checkout" element={<RutaProtegida><CheckoutPage /></RutaProtegida>} />
+        <Route path="/contact" element={<RutaProtegida><ContactPage /></RutaProtegida>} />
+
+        {/* Página de error, también protegida */}
+        <Route path="*" element={<RutaProtegida><ErrorPage /></RutaProtegida>} />
+      </Routes>
+    </Router>
   );
 };
 
 export default AllRoute;
+
