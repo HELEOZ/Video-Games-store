@@ -7,7 +7,6 @@ import img2 from "../../img/team-member.jpg";
 import img3 from "../../img/team-member.jpg";
 import img4 from "../../img/team-member.jpg";
 import img5 from "../../img/team-member.jpg";
-import img6 from "../../img/team-member.jpg";
 
 import "./style.css";
 
@@ -15,6 +14,43 @@ function Team(props) {
   const onClick = (e) => {
     e.preventDefault();
   };
+
+  const teamMembers = [
+    {
+      id: 1,
+      name: "Denylson Velasquez",
+      position: "Back End",
+      image: img1,
+    },
+    {
+      id: 2,
+      name: "Leonardo Zavala",
+      position: "Back End",
+      image: img2,
+    },
+    {
+      id: 3,
+      name: "Axel Flores",
+      position: "Hibrido",
+      image: img3,
+    },
+    {
+      id: 4,
+      name: "Ana Gonzales",
+      position: "Front End",
+      image: img4,
+    },
+    {
+      id: 5,
+      name: "Anny Merlo",
+      position: "Front End",
+      image: img5,
+    },
+  ];
+
+  const topTeamMembers = teamMembers.slice(0, 3);
+  const bottomTeamMembers = teamMembers.slice(3);
+
   return (
     <>
       <section className="fag-team-area section_100">
@@ -25,195 +61,79 @@ function Team(props) {
             <Col sm={12}>
               <div className="site-heading">
                 <h2 className="heading_animation">
-                  Team <span>Member</span>
-                </h2>               
-                <p>
-                   ¡Conoce a las personas detrás de nuestro éxito!
-                </p>
+                  Equipo <span>de Trabajo</span>
+                </h2>
+                <p>¡Conoce a las personas detrás de nuestro éxito!</p>
               </div>
             </Col>
           </Row>
           <Row>
-            <Col lg={3} sm={6}>
-              <div className="team-item">
-                <div className="team-image">
-                  <img src={img1} alt="team-1" />
-                </div>
-                <div className="team-details">
-                  <h3>---</h3>
-                  <span>---</span>
-                  <div className="team-social">
-                    <ul>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaFacebookF />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaTwitter />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaSkype />
-                        </Link>
-                      </li>
-                    </ul>
+            {topTeamMembers.map((member) => (
+              <Col lg={4} sm={6} key={member.id}>
+                <div className="team-item">
+                  <div className="team-image">
+                    <img src={member.image} alt={`team-${member.id}`} />
+                  </div>
+                  <div className="team-details">
+                    <h3>{member.name}</h3>
+                    <span>{member.position}</span>
+                    <div className="team-social">
+                      <ul>
+                        <li>
+                          <Link to="/" onClick={onClick}>
+                            <FaFacebookF />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/" onClick={onClick}>
+                            <FaTwitter />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/" onClick={onClick}>
+                            <FaSkype />
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={6}>
-              <div className="team-item">
-                <div className="team-image">
-                  <img src={img2} alt="team-2" />
-                </div>
-                <div className="team-details">
-                  <h3>---</h3>
-                  <span>---</span>
-                  <div className="team-social">
-                    <ul>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaFacebookF />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaTwitter />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaSkype />
-                        </Link>
-                      </li>
-                    </ul>
+              </Col>
+            ))}
+          </Row>
+          <Row className="justify-content-center">
+            {bottomTeamMembers.map((member) => (
+              <Col lg={4} sm={6} key={member.id}>
+                <div className="team-item">
+                  <div className="team-image">
+                    <img src={member.image} alt={`team-${member.id}`} />
+                  </div>
+                  <div className="team-details">
+                    <h3>{member.name}</h3>
+                    <span>{member.position}</span>
+                    <div className="team-social">
+                      <ul>
+                        <li>
+                          <Link to="/" onClick={onClick}>
+                            <FaFacebookF />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/" onClick={onClick}>
+                            <FaTwitter />
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/" onClick={onClick}>
+                            <FaSkype />
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={6}>
-              <div className="team-item">
-                <div className="team-image">
-                  <img src={img3} alt="team-3" />
-                </div>
-                <div className="team-details">
-                  <h3>---</h3>
-                  <span>---</span>
-                  <div className="team-social">
-                    <ul>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaFacebookF />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaTwitter />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaSkype />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={6}>
-              <div className="team-item">
-                <div className="team-image">
-                  <img src={img4} alt="team-4" />
-                </div>
-                <div className="team-details">
-                  <h3>---</h3>
-                  <span>---</span>
-                  <div className="team-social">
-                    <ul>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaFacebookF />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaTwitter />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaSkype />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col lg={3} sm={6}>
-              <div className="team-item">
-                <div className="team-image">
-                  <img src={img5} alt="team-5" />
-                </div>
-                <div className="team-details">
-                  <h3>---</h3>
-                  <span>---</span>
-                  <div className="team-social">
-                    <ul>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaFacebookF />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaTwitter />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaSkype />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </Col>         
-            <Col lg={3} sm={6}>
-              <div className="team-item">
-                <div className="team-image">
-                  <img src={img6} alt="team-6" />
-                </div>
-                <div className="team-details">
-                  <h3>---</h3>
-                  <span>---</span>
-                  <div className="team-social">
-                    <ul>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaFacebookF />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaTwitter />
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/" onClick={onClick}>
-                          <FaSkype />
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </Col>
+              </Col>
+            ))}
           </Row>
         </Container>
       </section>
