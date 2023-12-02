@@ -9,7 +9,7 @@ const ProductPage = () => {
   return (
     <>
       <Header />
-      <PageTitle Title={<>Products</>} />
+      <PageTitle Title={<>Productos</>} />
       <Product />
       <Footer />
     </>
