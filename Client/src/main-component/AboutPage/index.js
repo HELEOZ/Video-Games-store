@@ -12,7 +12,7 @@ const AboutPage = () => {
       <PageTitle
         Title={
           <>
-            About <span>Us</span>
+            Sobre <span>Nostros</span>
           </>
         }
       />
