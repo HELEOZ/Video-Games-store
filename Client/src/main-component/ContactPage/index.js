@@ -9,7 +9,7 @@ const ContactPage = () => {
   return (
     <>
       <Header />
-      <PageTitle Title={<>Contact Us</>} />
+      <PageTitle Title={<>Contactanos</>} />
       <Contact />
       <Footer />
     </>
