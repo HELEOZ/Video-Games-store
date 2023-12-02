@@ -9,7 +9,7 @@ const CheckoutPage = () => {
   return (
     <>
       <Header />
-      <PageTitle Title={<>Checkout Page</>} />
+      <PageTitle Title={<>Facturas</>} />
       <Checkout />
       <Footer />
     </>
