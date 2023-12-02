@@ -9,7 +9,7 @@ const CartPage = () => {
   return (
     <>
       <Header />
-      <PageTitle Title={<>Cart page</>} />
+      <PageTitle Title={<>Carro de compras</>} />
       <Cart />
       <Footer />
     </>
