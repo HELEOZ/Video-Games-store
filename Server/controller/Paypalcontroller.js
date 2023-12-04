@@ -1,13 +1,7 @@
-import axios from "axios";
-import {
-  PAYPAL_API,
-  HOST,
-  
-  PAYPAL_API_CLIENT,
-  PAYPAL_API_SECRET,
-} from "../config/paypalConfig";
+const axios = require("axios");
+const { PAYPALCLIENT, PAYPALSECRET, PAYPALURL, HOST,} = require("../config/Config");
 
-export const createOrder = async (req, res) => {
+module.exports.createOrder = async (req, res) => {
   try {
     const order = {
       intent: "CAPTURE",
@@ -15,16 +9,16 @@ export const createOrder = async (req, res) => {
         {
           amount: {
             currency_code: "USD",
-            value: "105.70",
+            value: "10.70",
           },
         },
       ],
       application_context: {
         brand_name: "mycompany.com",
-        landing_page: "NO_PREFERENCE",
+        landing_page: "NO_PREFERENCE",  // Accion para que en paypal muestre el monto del pago
         user_action: "PAY_NOW",
         return_url: `${HOST}/capture-order`,
-        cancel_url: `${HOST}/cancel-payment`,
+        cancel_url: `${HOST}/cancel-order`,
       },
     };
 
@@ -33,9 +27,7 @@ export const createOrder = async (req, res) => {
     params.append("grant_type", "client_credentials");
 
     // Generate an access token
-    const {
-      data: { access_token },
-    } = await axios.post(
+   const {data: { access_token },} = await axios.post(
       "https://api-m.sandbox.paypal.com/v1/oauth2/token",
       params,
       {
@@ -43,19 +35,17 @@ export const createOrder = async (req, res) => {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {
-          username: PAYPAL_API_CLIENT,
-          password: PAYPAL_API_SECRET,
+          username: PAYPALCLIENT,
+          password: PAYPALSECRET,
         },
       }
     );
-
+   
     console.log(access_token);
 
     // make a request
     const response = await axios.post(
-      `${PAYPAL_API}/v2/checkout/orders`,
-      order,
-      {
+      `${PAYPALURL}/v2/checkout/orders`, order,{
         headers: {
           Authorization: `Bearer ${access_token}`,
         },
@@ -63,36 +53,36 @@ export const createOrder = async (req, res) => {
     );
 
     console.log(response.data);
-
-    return res.json(response.data);
+    //return res.json(response.data);
+    return res.json("capture-order");
   } catch (error) {
-    console.log(error);
-    return res.status(500).json("Something goes wrong");
+    console.error("Error al conectarse a PayPal:", error.response ? error.response.data : error.message);
+  return res.status(500).json("Error al conectarse a PayPal");
   }
 };
 
-export const captureOrder = async (req, res) => {
+module.exports.captureOrder = async (req, res) => {
   const { token } = req.query;
 
   try {
     const response = await axios.post(
-      `${PAYPAL_API}/v2/checkout/orders/${token}/capture`,
+      `${PAYPALURL}/v2/checkout/orders/${token}/capture`,
       {},
       {
         auth: {
-          username: PAYPAL_API_CLIENT,
-          password: PAYPAL_API_SECRET,
+          username: PAYPALCLIENT,
+          password: PAYPALSECRET,
         },
       }
     );
 
     console.log(response.data);
 
-    res.redirect("/payed.html");
+    res.redirect("informacion:" + response.data); // redirect a la pagina carrito
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ message: "Internal Server error" });
   }
 };
 
-export const cancelPayment = (req, res) => res.redirect("/");
+module.exports.cancelPayment = (req, res) => res.redirect("/");
