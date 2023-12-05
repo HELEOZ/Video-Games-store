@@ -10,6 +10,7 @@ router.post('/products',(req, res) => {
     .catch((error) => res.status(500).json({ error: error.message }));
 });
 
+
 //Mostrar un solousurio
 router.get("/products/:id",(req, res) => {
     //const { id } = req.params; Traer un solo usuario

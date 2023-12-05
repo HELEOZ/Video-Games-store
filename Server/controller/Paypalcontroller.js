@@ -24,6 +24,7 @@ module.exports.createOrder = async (req, res) => {
 
     // format the body
     const params = new URLSearchParams();
+
     params.append("grant_type", "client_credentials");
 
     // Generate an access token
@@ -77,8 +78,17 @@ module.exports.captureOrder = async (req, res) => {
     );
 
     console.log(response.data);
-
-    res.redirect("informacion:" + response.data); // redirect a la pagina carrito
+    
+       // Guarda la orden en la base de datos o realiza otras acciones necesarias
+       const updatedOrder = await Order.findOneAndUpdate(
+        { orderNumber },
+        { paypalCapturedData: paypalData },
+        { new: true }
+      );
+  
+      console.log("Orden actualizada en la base de datos:", updatedOrder);
+  
+    res.redirect("/client/src/components/checkout/index.js"); // redirect a la pagina carrito
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ message: "Internal Server error" });
