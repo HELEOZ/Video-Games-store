@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import { Container, Row, Col } from "react-bootstrap";
 import {
   FaAngleRight,
@@ -23,6 +24,30 @@ import "./style.css";
 function Blog(props) {
   const [modal, setModal] = useState(false);
   const [videoLoading, setVideoLoading] = useState(true);
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    // Llama a la función para obtener los blogs al cargar el componente
+    fetchBlogs();
+  }, []);
+
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.get('http://localhost:9000/api/Noticias'); // Reemplaza la URL con la de tu API
+      setBlogs(response.data);
+    } catch (error) {
+      console.error('Hubo un problema al obtener los blogs:', error);
+    }
+  };
+  const deleteBlog = async (blogId) => {
+    try {
+      await axios.delete(`http://localhost:9000/api/Noticias/${blogId}`); // Reemplaza la URL con la de tu API
+      // Vuelve a obtener los blogs después de eliminar uno
+      fetchBlogs();
+    } catch (error) {
+      console.error('Hubo un problema al eliminar el blog:', error);
+    }
+  };
 
   const closeModal = () => {
     setModal(false);

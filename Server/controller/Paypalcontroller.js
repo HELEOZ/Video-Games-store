@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { PAYPALCLIENT, PAYPALSECRET, PAYPALURL, HOST,} = require("../config/Config");
+const Order = require("../models/orden");
 
 module.exports.createOrder = async (req, res) => {
   try {
@@ -52,10 +53,17 @@ module.exports.createOrder = async (req, res) => {
         },
       }
     );
-
+    
     console.log(response.data);
-    //return res.json(response.data);
-    return res.json("capture-order");
+    
+    const newOrder = await Order.create({
+      orderNumber: response.data.id, // Utiliza el ID de la respuesta de PayPal como número de orden
+      paypalData: response.data, // Guarda todos los datos de PayPal si es necesario
+    });
+
+    console.log("Orden guardada en la base de datos:", newOrder);
+    return res.json(response.data);
+    //return res.json("capture-order");
   } catch (error) {
     console.error("Error al conectarse a PayPal:", error.response ? error.response.data : error.message);
   return res.status(500).json("Error al conectarse a PayPal");
@@ -86,7 +94,7 @@ module.exports.captureOrder = async (req, res) => {
         { new: true }
       );
   
-      console.log("Orden actualizada en la base de datos:", updatedOrder);
+    console.log("Orden actualizada en la base de datos:", updatedOrder);
   
     res.redirect("/client/src/components/checkout/index.js"); // redirect a la pagina carrito
   } catch (error) {

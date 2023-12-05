@@ -3,30 +3,40 @@ import { Container, Row, Col } from "react-bootstrap";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import "./style.css";
 import axios from "axios"; 
-  
+
 
 function Checkout(props) {
   const [isPaid, setIsPaid] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
 
   const handleApprove = (data, actions) => {
-    return actions.order.capture().then((details) => {
+    return actions.order.capture().then(async (details) => {
       setIsPaid(true);
       // Genera un número de orden aleatorio (puedes ajustar esto según tus necesidades)
       const randomOrderNumber = Math.floor(Math.random() * 100000);
       setOrderNumber(randomOrderNumber);
-
-      // Enviar confirmación de pago al backend usando Axios
+       // Enviar confirmación de pago al backend usando Axios
+    try {
+      const response = await axios.post("http://localhost:9000/capture-order", {
+        orderNumber: randomOrderNumber,
+        paypalData: details, // Puedes ajustar esto según la estructura de tu modelo
+      });
+      console.log("Confirmación de pago enviada al backend:", response.data);
+      // Puedes hacer más cosas según la respuesta del backend si es necesario
+    } catch (error) {
+      console.error("Error al enviar la confirmación de pago:", error);
+    }
+     /* // Enviar confirmación de pago al backend usando Axios
       axios.post("http://localhost:9000/capture-order", { details, orderNumber })
         .then(response => {
           // Manejar la respuesta del backend si es necesario
-          // orderId: details.id,  // Puedes ajustar según tus necesidades
+          orderId: details.id,  // Puedes ajustar según tus necesidades
           console.log("Confirmación de pago:", response.data);
         })
         .catch(error => {
           // Manejar errores si es necesario
           console.error("Error al enviar confirmación de pago:", error);
-        });
+        });*/
     });
   };
 

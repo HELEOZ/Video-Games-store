@@ -1,8 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import axios from 'axios';
-
-// Resto de tu código...
-
 import { Container, Row, Col } from "react-bootstrap";
 import {
   FaAngleRight,
@@ -25,7 +22,6 @@ import author2 from "../../img/5.jpg";
 import "./style.css";
 
 function BlogDetails(props) {
-
   // Estado para los datos del comentario y para todos los comentarios
   const [commentData, setCommentData] = useState({
     name: "",
@@ -33,47 +29,67 @@ function BlogDetails(props) {
     comment: ""
   });
   const [comments, setComments] = useState([]);
+  const [editing, setEditing] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  const fetchComments = async () => {
     try {
-      // Realiza la solicitud POST a tu backend
-      const response = await axios.post('http://localhost:9000/api/comments', commentData);
-  
-      // Verifica si la solicitud fue exitosa (código 201)
-      if (response.status === 201) {
-        // Agrega el nuevo comentario al arreglo de comentarios
-        setComments([...comments, response.data]);
-        // Resetea el formulario
-        setCommentData({ name: "", email: "", comment: "" });
-      } else {
-        // Maneja errores si la solicitud no fue exitosa
-        console.error('Error al enviar el comentario');
-      }
+      const response = await axios.get('http://localhost:9000/api/comments');
+      setComments(response.data);
     } catch (error) {
-      // Maneja errores de la solicitud
-      console.error('Hubo un problema con la solicitud:', error);
+      console.error('Hubo un problema al obtener los comentarios:', error);
     }
   };
 
-  const [editing, setEditing] = useState(null); // Almacena el índice del comentario que se está editando
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (editing !== null) {
+        // Si estamos editando, realiza una solicitud PUT para actualizar el comentario
+        await axios.put(`http://localhost:9000/api/comments/${comments[editing]._id}`, commentData);
+        setEditing(null);
+      } else {
+        // Si no estamos editando, realiza una solicitud POST para agregar un nuevo comentario
+        const response = await axios.post('http://localhost:9000/api/comments', commentData);
+        setComments([...comments, response.data]);
+      }
+
+      // Resetea el formulario
+      setCommentData({ name: '', email: '', comment: '' });
+    } catch (error) {
+      console.error('Hubo un problema con la solicitud Axios:', error);
+    }
+  };
+
   const handleEdit = (index) => {
     setEditing(index);
     setCommentData({ ...comments[index] });
   };
-  // Función para eliminar un comentario
-  const handleDelete = (index) => {
-    const updatedComments = comments.filter((_, i) => i !== index);
-    setComments(updatedComments);
+    // Función para eliminar un comentario
+  const handleDelete = async (index) => {
+    try {
+      // Realiza una solicitud DELETE para eliminar el comentario
+      await axios.delete(`http://localhost:9000/api/comments/${comments[index]._id}`);
+      const updatedComments = comments.filter((_, i) => i !== index);
+      setComments(updatedComments);
+      setEditing(null);
+      setCommentData({ name: '', email: '', comment: '' });
+    } catch (error) {
+      console.error('Hubo un problema al eliminar el comentario:', error);
+    }
   };
-
-  const saveComment = () => {
-    const updatedComments = [...comments];
-    updatedComments[editing] = commentData;
-    setComments(updatedComments);
-    setEditing(null);
-    setCommentData({ name: "", email: "", comment: "" });
-  };
+// Almacena el índice del comentario que se está editando
+const saveComment = () => {
+  const updatedComments = [...comments];
+  updatedComments[editing] = commentData;
+  setComments(updatedComments);
+  setEditing(null);
+  setCommentData({ name: '', email: '', comment: '' });
+};
 
 
   return (
@@ -291,6 +307,7 @@ function BlogDetails(props) {
                               {/* Botón actualizado para eliminar */}
                               <button onClick={() => handleDelete(index)}>Eliminar</button>
                             </div>
+                            
                           )}
 
                         </div>
