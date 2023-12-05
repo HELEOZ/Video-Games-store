@@ -7,10 +7,10 @@ import { FaPlay } from "react-icons/fa";
 import { BiLoaderAlt } from "react-icons/bi";
 import { MdClose } from "react-icons/md";
 import img from "../../img/Juego-1.jpg";
-import game1 from "../../img/games-1.jpg";
-import game2 from "../../img/game-2.jpg";
-import game3 from "../../img/game-3.jpg";
-import game4 from "../../img/game-4.jpg";
+import game1 from "../../img/Juego1_acción.jpg";
+import game2 from "../../img/Juego3_plataforma.jpg";
+import game3 from "../../img/Juego3_carreras.jpg";
+import game4 from "../../img/Juego1_simulación.jpg";
 import feature1 from "../../img/feature-1.png";
 import feature2 from "../../img/feature-2.png";
 import feature3 from "../../img/feature-3.png";
@@ -337,9 +337,7 @@ function GameDetails(props) {
                   Related <span>games</span>
                 </h2>
                 <p>
-                  blanditiis praesentium voluptatum deleniti atque
-                  corrupti.accusamus et iusto odio corrupti.accusamus et iusto
-                  odioiusto odio dignissimos ducimus qui blanditiis
+                  aquellos que se sienten halagados y comprometidos por los juegos.
                 </p>
               </div>
             </Col>
@@ -351,7 +349,7 @@ function GameDetails(props) {
                   <div className="games-thumb">
                     <div className="games-thumb-image">
                       <Link to="/">
-                        <img src={game2} alt="games" />
+                        <img src={game1} alt="games" />
                       </Link>
                     </div>
                     <div className="game-overlay">
@@ -364,11 +362,11 @@ function GameDetails(props) {
                   </div>
                   <div className="games-desc">
                     <h3>
-                      <Link to="/">Red Dead Redemption 2</Link>
+                      <Link to="/">Call of Duty: Vanguard</Link>
                     </h3>
-                    <p className="game-meta">Action | Desktop</p>
+                    <p className="game-meta">Acción | Escritorio</p>
                     <p className="game-meta">
-                      Release date:<span> 07.12.2015</span>
+                      Fecha de Lanzamiento:<span> 05.11.2021</span>
                     </p>
                     <div className="game-rating">
                       <h4>4.5</h4>
@@ -392,12 +390,12 @@ function GameDetails(props) {
                     </div>
                     <div className="game-action">
                       <div className="game-price">
-                        <h4>$18.99</h4>
+                        <h4>L700.00</h4>
                         <p className="off">40% OFF</p>
                       </div>
                       <div className="game-buy">
                         <Link to="/" className="fag-btn-outline">
-                          Buy Now!
+                          Comprar!
                         </Link>
                       </div>
                     </div>
@@ -411,7 +409,7 @@ function GameDetails(props) {
                   <div className="games-thumb">
                     <div className="games-thumb-image">
                       <Link to="/">
-                        <img src={game3} alt="games" />
+                        <img src={game2} alt="games" />
                       </Link>
                     </div>
                     <div className="game-overlay">
@@ -424,11 +422,11 @@ function GameDetails(props) {
                   </div>
                   <div className="games-desc">
                     <h3>
-                      <Link to="/">Baldur's Gate II</Link>
+                      <Link to="/">Little Nighmares</Link>
                     </h3>
-                    <p className="game-meta">Action | Desktop</p>
+                    <p className="game-meta">Plataforma | Escritorio</p>
                     <p className="game-meta">
-                      Release date:<span> 07.12.2015</span>
+                      Fecha de Lanzamiento:<span> 28.04.2017</span>
                     </p>
                     <div className="game-rating">
                       <h4>4.2</h4>
@@ -453,13 +451,73 @@ function GameDetails(props) {
                     <div className="game-action">
                       <div className="game-price">
                         <h4>
-                          <del>$18.99</del>
+                          <del>L00.00</del>
                         </h4>
                         <p className="free">FREE</p>
                       </div>
                       <div className="game-buy">
                         <Link to="/" className="fag-btn-outline">
-                          Download
+                          Descargar
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Col>
+            <Col sm={6} lg={3}>
+              <div className="games-item mobile">
+                <div className="games-single-item img-contain-isotope">
+                  <div className="games-thumb">
+                    <div className="games-thumb-image">
+                      <Link to="/">
+                        <img src={game3} alt="games" />
+                      </Link>
+                    </div>
+                    <div className="game-overlay">
+                      <div onClick={openModal} className="popup-youtube">
+                        <span>
+                          <FaPlay />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="games-desc">
+                    <h3>
+                      <Link to="/">Need for Speed Unbound</Link>
+                    </h3>
+                    <p className="game-meta">Carreras | Escritorio</p>
+                    <p className="game-meta">
+                     Fecha de Lanzamiento:<span> 29.11.2022</span>
+                    </p>
+                    <div className="game-rating">
+                      <h4>4.2</h4>
+                      <ul>
+                        <li>
+                          <AiFillStar />
+                        </li>
+                        <li>
+                          <AiFillStar />
+                        </li>
+                        <li>
+                          <AiFillStar />
+                        </li>
+                        <li>
+                          <AiFillStar />
+                        </li>
+                        <li>
+                          <AiOutlineStar />
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="game-action">
+                      <div className="game-price">
+                        <h4>L1,000.00</h4>
+                        <p className="off">40% OFF</p>
+                      </div>
+                      <div className="game-buy">
+                        <Link to="/" className="fag-btn-outline">
+                          Comprar!
                         </Link>
                       </div>
                     </div>
@@ -486,71 +544,11 @@ function GameDetails(props) {
                   </div>
                   <div className="games-desc">
                     <h3>
-                      <Link to="/">Hand of Gilgamech</Link>
+                      <Link to="/">Railway Empire</Link>
                     </h3>
-                    <p className="game-meta">Action | Desktop</p>
+                    <p className="game-meta">Simulación| Escritorio</p>
                     <p className="game-meta">
-                      Release date:<span> 07.12.2015</span>
-                    </p>
-                    <div className="game-rating">
-                      <h4>4.2</h4>
-                      <ul>
-                        <li>
-                          <AiFillStar />
-                        </li>
-                        <li>
-                          <AiFillStar />
-                        </li>
-                        <li>
-                          <AiFillStar />
-                        </li>
-                        <li>
-                          <AiFillStar />
-                        </li>
-                        <li>
-                          <AiOutlineStar />
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="game-action">
-                      <div className="game-price">
-                        <h4>$18.99</h4>
-                        <p className="off">40% OFF</p>
-                      </div>
-                      <div className="game-buy">
-                        <Link to="/" className="fag-btn-outline">
-                          Buy Now!
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Col>
-            <Col sm={6} lg={3}>
-              <div className="games-item mobile">
-                <div className="games-single-item img-contain-isotope">
-                  <div className="games-thumb">
-                    <div className="games-thumb-image">
-                      <Link to="/">
-                        <img src={game1} alt="games" />
-                      </Link>
-                    </div>
-                    <div className="game-overlay">
-                      <div onClick={openModal} className="popup-youtube">
-                        <span>
-                          <FaPlay />
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="games-desc">
-                    <h3>
-                      <Link to="/">Desperados III Digital</Link>
-                    </h3>
-                    <p className="game-meta">Action | Desktop</p>
-                    <p className="game-meta">
-                      Release date:<span> 07.12.2015</span>
+                    Fecha de Lanzamiento:<span> 10.09.2017</span>
                     </p>
                     <div className="game-rating">
                       <h4>4.5</h4>
@@ -574,12 +572,12 @@ function GameDetails(props) {
                     </div>
                     <div className="game-action">
                       <div className="game-price">
-                        <h4>$28.99</h4>
+                        <h4>L200.00</h4>
                         <p className="off">50% OFF</p>
                       </div>
                       <div className="game-buy">
                         <Link to="/" className="fag-btn-outline">
-                          Buy Now!
+                          Comprar!
                         </Link>
                       </div>
                     </div>
@@ -625,3 +623,4 @@ function GameDetails(props) {
 }
 
 export default GameDetails;
+
