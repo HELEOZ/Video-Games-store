@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import "./style.css";
-import axios from "axios"; 
-  
+import axios from "axios";
 
 function Checkout(props) {
   const [isPaid, setIsPaid] = useState(false);
@@ -17,13 +16,14 @@ function Checkout(props) {
       setOrderNumber(randomOrderNumber);
 
       // Enviar confirmación de pago al backend usando Axios
-      axios.post("http://localhost:9000/capture-order", { details, orderNumber })
-        .then(response => {
+      axios
+        .post("http://localhost:9000/capture-order", { details, orderNumber })
+        .then((response) => {
           // Manejar la respuesta del backend si es necesario
           // orderId: details.id,  // Puedes ajustar según tus necesidades
           console.log("Confirmación de pago:", response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           // Manejar errores si es necesario
           console.error("Error al enviar confirmación de pago:", error);
         });
@@ -31,7 +31,12 @@ function Checkout(props) {
   };
 
   return (
-    <PayPalScriptProvider options={{"client-id": "AQd0KzXQesR1N1q_Etwrwaoky2fepj-oOQpA4-QJkOVIrvj2Oex12SN_Xx3gj5cZLInNj_B0enphzvpl"}}>
+    <PayPalScriptProvider
+      options={{
+        "client-id":
+          "AQd0KzXQesR1N1q_Etwrwaoky2fepj-oOQpA4-QJkOVIrvj2Oex12SN_Xx3gj5cZLInNj_B0enphzvpl",
+      }}
+    >
       <section className="checkout-page-area section_100">
         <Container>
           <Row>
@@ -42,11 +47,13 @@ function Checkout(props) {
                     style={{ layout: "vertical" }}
                     createOrder={(data, actions) => {
                       return actions.order.create({
-                        purchase_units: [{
-                          amount: {
-                            value: "270", // Total del pedido
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: "1200", // Cambia este valor a 1200 para Lempiras
+                            },
                           },
-                        }],
+                        ],
                       });
                     }}
                     onApprove={handleApprove}
@@ -69,5 +76,7 @@ function Checkout(props) {
     </PayPalScriptProvider>
   );
 }
+
+export default Checkout;
 
 export default Checkout;
