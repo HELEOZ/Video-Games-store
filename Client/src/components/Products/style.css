@@ -1,17 +1,23 @@
 /*Products Page CSS*/
 .products-grid .games-desc {
     background: linear-gradient(to bottom, #3366cc, #9966cc); /* Degradado entre azul y morado */
-    padding: 10px;
-    border-radius: 0 0 5px 5px; /* Estilo de borde inferior redondeado */
+    padding: 20px; /* Aumentamos el espacio de relleno */
+    border-radius: 0 0 10px 10px; /* Estilo de borde inferior redondeado */
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agregamos una sombra suave */
+    transition: background 0.3s ease; /* Transición de color de fondo */
+}
+
+.products-grid .games-desc:hover {
+    background: linear-gradient(to bottom, #5b10b1, #9966cc); /* Cambio de color de fondo al pasar el ratón */
 }
 
 .products-grid .games-desc h3 {
-    margin-bottom: 5px;
-    color: #fff;
-    font-size: 22px;
+    margin-bottom: 10px; /* Aumentamos el espacio inferior */
+    color: #220505;
+    font-size: 24px; /* Aumentamos el tamaño de la fuente */
     text-transform: capitalize;
-    font-weight: 600;
+    font-weight: 700; /* Aumentamos el grosor de la fuente */
 }
 
 .products-grid .games-desc h3 a:hover {
@@ -21,7 +27,8 @@
 /* Resto del código que proporcionaste anteriormente */
 .products-grid .games-thumb {
     background: #080811 none repeat scroll 0 0;
-    border-radius: 5px;
+    border-radius: 10px; /* Aumentamos el radio del borde */
+    overflow: hidden; /* Evitamos desbordamiento de contenido */
 }
 
 .products-grid .games-single-item {
