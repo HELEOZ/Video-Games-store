@@ -12,16 +12,30 @@ import "./style.css";
 
 function Header(props) {
   const [state, setstate] = useState(false);
+  const [showSubMenu, setShowSubMenu] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
 
   const changeClass = () => {
     const scrollValue = document.documentElement.scrollTop;
     if (scrollValue > 100) {
       setstate(true);
+      setShowSubMenu(false);
     } else {
       setstate(false);
     }
   };
   window.addEventListener("scroll", changeClass);
+
+  
+  const handleMouseEnter = (index) => {
+    setShowSubMenu(true);
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setShowSubMenu(false);
+  };
 
   // Obtiene los métodos y propiedades de Auth0
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -43,11 +57,13 @@ function Header(props) {
                     <li>
                       <Link to="/">Inicio</Link>
                     </li>
-                    <li className="has-sub">
-                      <Link to="/" onClick={() => {}}>
-                        Paginas
-                      </Link>
-                      <ul>
+                                        <li
+                      className="has-sub"
+                      onMouseEnter={() => handleMouseEnter(1)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <Link to="/">Paginas</Link>
+                      <ul style={{ display: showSubMenu && hoveredIndex === 1 ? 'block' : 'none' }}>
                         <li>
                           <Link to="/about">Sobre nosotros</Link>
                         </li>
@@ -59,12 +75,14 @@ function Header(props) {
                         </li>
                       </ul>
                     </li>
-                    <li className="has-sub">
-                      <Link to="/" onClick={() => {}}>
-                        Noticias
-                      </Link>
-                      <ul>
-                        <li>
+                    <li
+                      className="has-sub"
+                      onMouseEnter={() => handleMouseEnter(2)}
+                      onMouseLeave={handleMouseLeave}
+                    >
+                      <Link to="/">Noticias</Link>
+                      <ul style={{ display: showSubMenu && hoveredIndex === 2 ? 'block' : 'none' }}>
+                    <li>
                           <Link to="/blog">Todas las noticias</Link>
                         </li>
                         <li>
@@ -72,12 +90,14 @@ function Header(props) {
                         </li>
                       </ul>
                     </li>
-                    <li className="has-sub">
-                      <Link to="/" onClick={() => {}}>
-                        Tienda
-                      </Link>
-                      <ul>
-                        <li>
+                    <li
+                     className="has-sub"
+                     onMouseEnter={() => handleMouseEnter(3)}
+                     onMouseLeave={handleMouseLeave}
+                    >
+                    <Link to="/">Tienda</Link>
+                    <ul style={{ display: showSubMenu && hoveredIndex === 3 ? 'block' : 'none' }}>
+                    <li>
                           <Link to="/products">Todos los productos</Link>
                         </li>
                         <li>
