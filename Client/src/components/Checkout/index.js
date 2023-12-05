@@ -79,4 +79,4 @@ function Checkout(props) {
 
 export default Checkout;
 
-export default Checkout;
+
