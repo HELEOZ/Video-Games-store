@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import product1 from "../../img/product-1.png";
-import product2 from "../../img/product-3.png"; // Cambiar la ruta si es necesario
+import product1 from "../../img/product-1.jpeg";
+import product2 from "../../img/product-2.jpeg"; 
+import product3 from "../../img/product-3.jpeg"; // Cambiar la ruta si es necesario
 
 import "./style.css";
 
@@ -12,20 +13,20 @@ function Cart(props) {
     // Incluye los elementos de tu carrito aquí
     {
       id: 1,
-      name: "Gafas de Sol",
-      price: 20,
+      name: "Audifonos Redragon Gaming",
+      price: 1200,
       quantity: 1,
     },
     {
       id: 2,
-      name: "Chanclas",
-      price: 15,
+      name: "Bloque Luz - Paladone",
+      price: 1000,
       quantity: 1,
     },
     {
       id: 3,
-      name: "Producto 2",
-      price: 25,
+      name: "Letrero LED Mario Bros",
+      price: 1000,
       quantity: 1,
     },
   ]);
@@ -85,7 +86,7 @@ function Cart(props) {
                             <Link to="/product-single">
                               {item.id === 1 && <img src={product1} alt={item.name} />}
                               {item.id === 2 && <img src={product2} alt={item.name} />}
-                              {item.id === 3 && <img src={product2} alt={item.name} />}
+                              {item.id === 3 && <img src={product3} alt={item.name} />}
                             </Link>
                           </td>
                           <td className="fag-cart-product">
@@ -163,4 +164,3 @@ function Cart(props) {
 }
 
 export default Cart;
-
