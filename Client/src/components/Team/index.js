@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { FaFacebookF, FaTwitter, FaSkype } from "react-icons/fa";
-import img1 from "../../img/team-member.jpg";
-import img2 from "../../img/team-member.jpg";
-import img3 from "../../img/team-member.jpg";
-import img4 from "../../img/team-member.jpg";
-import img5 from "../../img/team-member.jpg";
+import img1 from "../../img/team-1.jpg";
+import img2 from "../../img/team-2.png";
+import img3 from "../../img/team-3.jpg";
+import img4 from "../../img/team-4.png";
+import img5 from "../../img/team-5.jpg";
 
 import "./style.css";
 
