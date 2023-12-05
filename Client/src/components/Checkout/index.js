@@ -27,6 +27,17 @@ function Checkout(props) {
       console.error("Error al enviar la confirmación de pago:", error);
     }
     });
+    /* // Enviar confirmación de pago al backend usando Axios
+      axios.post("http://localhost:9000/capture-order", { details, orderNumber })
+        .then(response => {
+          // Manejar la respuesta del backend si es necesario
+          orderId: details.id,  // Puedes ajustar según tus necesidades
+          console.log("Confirmación de pago:", response.data);
+        })
+        .catch((error) => {
+          // Manejar errores si es necesario
+          console.error("Error al enviar confirmación de pago:", error);
+        });*/
   };
 
   return (
